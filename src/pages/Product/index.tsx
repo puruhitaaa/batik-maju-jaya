@@ -47,15 +47,19 @@ const Product = () => {
               </div>
 
               <div>
-                <p>{product.numReviews} reviews</p>
+                <p className="tracking-wide">Brand: {product.brand}</p>
               </div>
 
               <div>
-                <p>Price: ${product.price}</p>
+                <p className="tracking-wide">{product.numReviews} reviews</p>
+              </div>
+
+              <div>
+                <p className="tracking-wide">Price: ${product.price}</p>
               </div>
 
               <div className="max-w-md">
-                <p>{product.description}</p>
+                <p className="tracking-wide">{product.description}</p>
               </div>
             </div>
 
