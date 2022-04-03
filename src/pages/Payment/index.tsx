@@ -26,9 +26,12 @@ const Payment = () => {
       .toFixed(2)
   );
 
-  const calculateTotal =
-    (taxPrice / 100) * (calculateItemsPrice + shippingPrice) +
-    (calculateItemsPrice + shippingPrice);
+  const calculateTotal = Number(
+    (
+      (taxPrice / 100) * (calculateItemsPrice + shippingPrice) +
+      (calculateItemsPrice + shippingPrice)
+    ).toFixed(2)
+  );
 
   const options = [
     {
