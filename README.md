@@ -10,7 +10,7 @@ Password : |7#fdNg4
 
 ## Demo
 
-https://earnest-pika-d7d866.netlify.app
+https://batik-maju-jaya.vercel.app
 
 
 ## Installation
