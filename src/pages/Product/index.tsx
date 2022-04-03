@@ -32,7 +32,7 @@ const Product = () => {
 
       {!_.isEmpty(product) ? (
         <main>
-          <div className="flex max-w-6xl my-10 mx-auto justify-center space-x-10 items-center">
+          <div className="flex flex-col md:flex-row space-y-10 max-w-6xl mx-auto justify-center space-x-10 py-5 md:py-10 items-center">
             <div className="w-96 h-96">
               <img
                 className="w-full h-full"
