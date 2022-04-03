@@ -14,7 +14,7 @@ const Home = () => {
     <>
       <Header title="case-3" />
 
-      <main className="max-w-6xl my-5 mx-auto">
+      <main className="max-w-6xl my-5 mx-auto py-5">
         <h1 className="text-2xl mb-5 font-bold tracking-wide">LATEST BATIK</h1>
 
         <FormContainer>
