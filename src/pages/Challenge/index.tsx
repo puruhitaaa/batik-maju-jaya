@@ -57,9 +57,12 @@ const Challenge = () => {
               <h1 className="font-bold text-3xl tracking-widest group-hover:scale-150 z-50">
                 Kasus 3
               </h1>
-              <p className="group-hover:block hidden text-xl z-50">E-Commerce</p>
+              <p className="group-hover:block hidden text-xl z-50">
+                E-Commerce
+              </p>
             </div>
           </div>
+        </div>
       </main>
     </div>
   );
