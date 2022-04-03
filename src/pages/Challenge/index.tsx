@@ -18,7 +18,7 @@ const Challenge = () => {
               <img
                 className="absolute w-full h-full object-cover top-0 left-0 right-0 bottom-0 brightness-50"
                 src="https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-3foodgroups_fruits_detailfeature.jpg?sfvrsn=64942d53_4"
-                alt="fruit"
+                alt="case-1"
               />
               <h1 className="font-bold text-3xl tracking-widest group-hover:scale-150 z-50">
                 Kasus 1
@@ -35,7 +35,7 @@ const Challenge = () => {
               <img
                 className="absolute w-full h-full object-cover top-0 left-0 right-0 bottom-0 brightness-50"
                 src="https://preview.redd.it/vbg1bd56kgj11.jpg?auto=webp&s=18e8965df8922d964f5867cf5ae0aae972890c71"
-                alt="fruit"
+                alt="case-2"
               />
               <h1 className="font-bold text-3xl tracking-widest group-hover:scale-150 z-50">
                 Kasus 2
@@ -45,17 +45,21 @@ const Challenge = () => {
           </div>
 
           <div
-            className="h-72 w-72 bg-slate-500 hover:bg-slate-200 transition-all delay-100  ease-in-out cursor-pointer"
+            className="h-72 w-72 cursor-pointer shadow-md"
             onClick={() => navigate('challenge/case-3')}
           >
-            <div className="w-full h-full flex flex-col items-center justify-center group">
-              <h1 className="font-bold text-3xl tracking-widest group-hover:scale-150">
+            <div className="w-full h-full hover:shadow-inner transition-all delay-100  text-slate-50 ease-in-out flex flex-col items-center justify-center relative group">
+              <img
+                className="absolute w-full h-full object-cover top-0 left-0 right-0 bottom-0 brightness-50"
+                src="https://i.ibb.co/F545fWY/Screenshot-2022-04-04-013641.png"
+                alt="case-3"
+              />
+              <h1 className="font-bold text-3xl tracking-widest group-hover:scale-150 z-50">
                 Kasus 3
               </h1>
-              <p className="group-hover:block hidden text-xl">E-Commerce</p>
+              <p className="group-hover:block hidden text-xl z-50">E-Commerce</p>
             </div>
           </div>
-        </div>
       </main>
     </div>
   );
