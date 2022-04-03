@@ -1,6 +1,6 @@
 # Batik Maju Jaya
 
-E - Commerce app made with React, Tailwind CSS, and a bunch of other things.
+E - Commerce app made with React, Tailwind CSS, and a bunch of other things. Backend code: https://github.com/puruhitaaa/backend-ecommerce
 
 ![Logo](https://i.ibb.co/m0c32Z3/Screenshot-2022-04-04-013946.png)
 
