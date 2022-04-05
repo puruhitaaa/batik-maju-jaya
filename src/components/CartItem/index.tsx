@@ -28,7 +28,7 @@ const CartItem = ({
       </div>
 
       <select
-        className="form-select appearance-none flex justify-center items-center px-5 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+        className="form-select appearance-none flex justify-center items-center pl-2.5 pr-10 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         onChange={(e) => {
           setQty(Number(e.target.value));
           updateCartItem(product, Number(e.target.value));

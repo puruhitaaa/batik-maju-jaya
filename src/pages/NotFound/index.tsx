@@ -4,7 +4,7 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-screen">
+    <div className="bg-stone-100 pb-2 min-h-screen">
       <main className="max-w-6xl h-full w-full mx-auto flex flex-col justify-center items-center space-y-10">
         <h1 className="text-3xl text-red-600 font-bold">404 Not found</h1>
         <button

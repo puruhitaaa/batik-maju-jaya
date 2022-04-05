@@ -1,14 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { PayPalButton } from 'react-paypal-button-v2';
-import { Header } from '../../components';
+import { Alert, Header } from '../../components';
 import { OrderContext } from '../../context/order';
 import axios from 'axios';
 import { PAYPAL_CONFIG_AUTH } from '../../constants/url';
 
 const Order = () => {
   const { orderId = '' } = useParams();
-  const { fetchOrderById, orderItem, payOrder } = useContext(OrderContext);
+  const { fetchOrderById, orderItem, payOrder, isPaymentSuccess } =
+    useContext(OrderContext);
   const [sdkReady, setSdkReady] = useState(false);
 
   const successPaymentHandler = (paymentResult: any) => {
@@ -40,8 +41,8 @@ const Order = () => {
   }, []);
 
   return (
-    <>
-      <Header title="case-3" />
+    <div className="bg-stone-100 pb-2 min-h-screen">
+      <Header />
 
       <main>
         <div className="w-full flex-col space-y-1.5 mx-auto max-w-6xl">
@@ -50,6 +51,10 @@ const Order = () => {
               Order <span className="font-semibold">{orderItem._id}</span>
             </h1>
           </div>
+
+          {isPaymentSuccess && (
+            <Alert text="Order has been paid" variant="success" />
+          )}
 
           <div className="flex justify-between items-center">
             <div className="divide-y space-y-5 divide-slate-500 w-3/4">
@@ -134,7 +139,7 @@ const Order = () => {
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

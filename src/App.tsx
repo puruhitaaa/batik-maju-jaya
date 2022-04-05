@@ -7,9 +7,6 @@ import Compose from './helpers/CombineProviders';
 import { ProtectedRoute } from './helpers/ProtectedRoute';
 import { PublicRoute } from './helpers/PublicRoute';
 import {
-  ChallengePage,
-  FruitsPage,
-  CommentPage,
   HomePage,
   NotFoundPage,
   LoginPage,
@@ -35,59 +32,53 @@ const App = () => {
       >
         <Routes>
           <Route path="*" element={<NotFoundPage />} />
-          <Route index element={<ChallengePage />} />
-          <Route path="challenge/case-1" element={<FruitsPage />} />
-          <Route path="challenge/case-2" element={<CommentPage />} />
-          <Route path="challenge/case-3" element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route
-            path="challenge/case-3/login"
+            path="login"
             element={
-              <PublicRoute redirectTo="/challenge/case-3">
+              <PublicRoute redirectTo="/">
                 <LoginPage />
               </PublicRoute>
             }
           />
           <Route
-            path="challenge/case-3/register"
+            path="register"
             element={
-              <PublicRoute redirectTo="/challenge/case-3">
+              <PublicRoute redirectTo="/">
                 <RegisterPage />
               </PublicRoute>
             }
           />
+          <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="cart" element={<CartPage />} />
           <Route
-            path="challenge/case-3/product/:productId"
-            element={<ProductPage />}
-          />
-          <Route path="challenge/case-3/cart" element={<CartPage />} />
-          <Route
-            path="challenge/case-3/shipping"
+            path="shipping"
             element={
-              <ProtectedRoute redirectTo="/challenge/case-3/login">
+              <ProtectedRoute redirectTo="/login">
                 <ShippingPage />
               </ProtectedRoute>
             }
           />
           <Route
-            path="challenge/case-3/payment"
+            path="payment"
             element={
-              <ProtectedRoute redirectTo="/challenge/case-3/login">
+              <ProtectedRoute redirectTo="/login">
                 <PaymentPage />
               </ProtectedRoute>
             }
           />
           <Route
-            path="challenge/case-3/order/:orderId"
+            path="order/:orderId"
             element={
-              <ProtectedRoute redirectTo="/challenge/case-3/login">
+              <ProtectedRoute redirectTo="/login">
                 <OrderPage />
               </ProtectedRoute>
             }
           />
           <Route
-            path="challenge/case-3/my-orders"
+            path="my-orders"
             element={
-              <ProtectedRoute redirectTo="/challenge/case-3/login">
+              <ProtectedRoute redirectTo="/login">
                 <MyOrdersPage />
               </ProtectedRoute>
             }

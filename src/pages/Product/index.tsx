@@ -27,15 +27,15 @@ const Product = () => {
   }, [productId]);
 
   return (
-    <>
-      <Header title="case-3" />
+    <div className="bg-stone-100 pb-2 min-h-screen">
+      <Header />
 
       {!_.isEmpty(product) ? (
-        <main>
+        <main className="px-2.5">
           <div className="flex flex-col md:flex-row space-y-10 max-w-6xl mx-auto justify-center space-x-10 py-5 md:py-10 items-center">
             <div className="w-96 h-96">
               <img
-                className="w-full h-full"
+                className="w-full h-full object-cover border border-stone-700"
                 src={product.image}
                 alt={product.price?.toString()}
               />
@@ -130,7 +130,7 @@ const Product = () => {
       ) : (
         <h1 className="animate-pulse mt-12 text-4xl text-center">Loading...</h1>
       )}
-    </>
+    </div>
   );
 };
 

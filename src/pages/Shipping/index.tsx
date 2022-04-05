@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import { useContext, useEffect, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../../components';
+import { Button, Header } from '../../components';
 import { CartContext } from '../../context/cart';
 
 const Shipping = () => {
@@ -21,88 +21,162 @@ const Shipping = () => {
   const { cart, saveShippingAddress, shippingAddress } =
     useContext(CartContext);
 
-  const handleContinue = () => {
+  const handleContinue = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     saveShippingAddress({ address, city, postalCode, country });
-    navigate('/challenge/case-3/payment');
+    navigate('/payment');
   };
 
   useEffect(() => {
     if (_.isEmpty(cart)) {
-      navigate('/challenge/case-3');
+      navigate('/');
     }
   }, [cart, navigate]);
 
   return (
-    <>
-      <Header title="case-3" />
+    <div className="bg-stone-100 pb-2 min-h-screen">
+      <Header />
 
       <main>
         <div className="max-w-6xl w-full mx-auto space-y-10 py-10">
           <h1 className="text-3xl tracking-wide text-center">Shipping</h1>
 
-          <form className="flex flex-col w-full items-center space-y-7">
-            <label className="flex flex-col" htmlFor="address">
-              ADDRESS
-              <input
-                className="outline-none border border-slate-500 px-3.5 py-1.5 mt-2"
-                onChange={(e) => setAddress(e.target.value)}
-                placeholder="input address"
-                value={address}
-                type="text"
-              />
+          <form
+            className="flex flex-col w-64 mx-auto space-y-5"
+            onSubmit={handleContinue}
+          >
+            <label className="form-label inline-block mb-2 text-gray-700">
+              Address
             </label>
-            <label className="flex flex-col" htmlFor="city">
-              CITY
-              <input
-                className="outline-none border border-slate-500 px-3.5 py-1.5 mt-2"
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="input city"
-                value={city}
-                type="text"
-              />
-            </label>
-            <label className="flex flex-col" htmlFor="postalCode">
-              POSTAL CODE
-              <input
-                className="outline-none border border-slate-500 px-3.5 py-1.5 mt-2"
-                onChange={(e) => setPostalCode(e.target.value)}
-                placeholder="input postal code"
-                value={postalCode}
-                type="text"
-              />
-            </label>
-            <label className="flex flex-col" htmlFor="country">
-              COUNTRY
-              <input
-                className="outline-none border border-slate-500 px-3.5 py-1.5 mt-2"
-                onChange={(e) => setCountry(e.target.value)}
-                placeholder="input country"
-                value={country}
-                type="text"
-              />
-            </label>
+            <input
+              type="text"
+              className="
+        form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+      "
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Enter address"
+              value={address}
+            />
 
-            <button
-              disabled={isInvalid}
-              type="button"
-              className="bg-amber-300 mx-auto block px-5 py-1.5 disabled:text-slate-500 disabled:bg-amber-100 disabled:cursor-not-allowed rounded-full transition-colors hover:bg-slate-400"
-              onClick={() => handleContinue()}
+            <label className="form-label inline-block mb-2 text-gray-700">
+              City
+            </label>
+            <input
+              type="text"
+              className="
+        form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+      "
+              onChange={(e) => setCity(e.target.value)}
+              placeholder="Enter city"
+              value={city}
+            />
+
+            <label
+              htmlFor="exampleFormControlInput1"
+              className="form-label inline-block mb-2 text-gray-700"
             >
-              Continue
-            </button>
+              Postal Code
+            </label>
+            <input
+              type="text"
+              className="
+        form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+      "
+              onChange={(e) => setPostalCode(e.target.value)}
+              placeholder="Enter post code"
+              value={postalCode}
+            />
+
+            <label
+              htmlFor="exampleFormControlInput1"
+              className="form-label inline-block mb-2 text-gray-700"
+            >
+              Country
+            </label>
+            <input
+              type="text"
+              className="
+        form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+      "
+              onChange={(e) => setCountry(e.target.value)}
+              placeholder="Enter country"
+              value={country}
+            />
+
+            <Button
+              isDisabled={isInvalid}
+              text="Continue"
+              variant="warning"
+              type="submit"
+            />
             {!_.isEmpty(shippingAddress) && (
-              <button
+              <Button
+                onClick={() => navigate('/payment')}
+                text="Use existing address/es"
+                variant="light"
                 type="button"
-                className="bg-slate-300 mx-auto block px-5 py-1.5 rounded-full transition-colors hover:bg-slate-400"
-                onClick={() => navigate('/challenge/case-3/payment')}
-              >
-                Use existing address/es
-              </button>
+              />
             )}
           </form>
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,10 @@
-export { default as Modal } from './Modal';
 export { default as Header } from './Header';
 export { default as FormContainer } from './FormContainer';
 export { default as ProductItem } from './ProductItem';
 export { default as CartItem } from './CartItem';
+export { default as Review } from './Review';
+export { default as Button } from './Button';
+export { default as Jumbotron } from './Jumbotron';
+export { default as Rating } from './Rating';
+export { default as Testimonials } from './Testimonials';
+export { default as Alert } from './Alert';

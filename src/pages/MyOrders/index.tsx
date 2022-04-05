@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../../components';
+import { Button, Header } from '../../components';
 import { OrderContext } from '../../context/order';
 
 const MyOrders = () => {
@@ -8,8 +8,8 @@ const MyOrders = () => {
   const navigate = useNavigate();
 
   return (
-    <>
-      <Header title="case-3" />
+    <div className="bg-stone-100 pb-2 min-h-screen">
+      <Header />
 
       <main>
         <h1 className="text-3xl py-10 tracking-wide text-center">My Orders</h1>
@@ -99,14 +99,12 @@ const MyOrders = () => {
                     )}
                   </td>
                   <td className="border px-8 py-4">
-                    <button
-                      className="bg-slate-300 mx-auto block px-3.5 py-1 rounded-full transition-colors hover:bg-slate-400"
-                      onClick={() =>
-                        navigate(`/challenge/case-3/order/${el._id}`)
-                      }
-                    >
-                      Details
-                    </button>
+                    <Button
+                      type="button"
+                      text="Details"
+                      variant="light"
+                      onClick={() => navigate(`/order/${el._id}`)}
+                    />
                   </td>
                 </tr>
               ))}
@@ -114,7 +112,7 @@ const MyOrders = () => {
           </table>
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

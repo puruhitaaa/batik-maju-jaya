@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../../components';
+import { Alert, Button, Header } from '../../components';
 import { CartContext } from '../../context/cart';
 import { OrderContext } from '../../context/order';
 
@@ -49,88 +49,97 @@ const Payment = () => {
     );
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    createOrder({
+      itemsPrice: calculateItemsPrice,
+      paymentMethod: paymentMethod,
+      shippingPrice: shippingPrice,
+      shippingAddress: addressItem,
+      taxPrice: taxPrice,
+      totalPrice: calculateTotal,
+      orderItems: cart,
+    });
+  };
+
   useEffect(() => {
     if (_.isEmpty(shippingAddress)) {
-      navigate('/challenge/case-3/shipping');
+      navigate('/shipping');
     }
 
     if (_.isEmpty(cart)) {
-      navigate('/challenge/case-3');
+      navigate('/');
     }
 
     if (success) {
-      navigate(`/challenge/case-3/order/${orderItem._id}`);
+      navigate(`/order/${orderItem._id}`);
     }
   }, [shippingAddress, navigate, cart, success, orderItem]);
 
   return (
-    <>
-      <Header title="case-3" />
+    <div className="bg-stone-100 pb-2 min-h-screen">
+      <Header />
 
       <main>
         <div className="max-w-6xl w-full mx-auto space-y-10 py-10">
           <h1 className="text-3xl trackging-wide text-center">Payment</h1>
 
-          <form className="flex flex-col w-full items-center space-y-7">
-            <label className="flex flex-col" htmlFor="payment">
-              Select payment method
-              <select
-                className="mt-5 border border-slate-500"
-                name="payment"
-                id="payment"
-                onChange={(e) => {
-                  savePaymentMethod(e.target.value.toLowerCase());
-                  setPay(e.target.value);
-                }}
-                value={pay}
-              >
-                {options.map((el) => (
-                  <option key={el.provider} value={el.provider}>
-                    {el.provider}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label className="flex flex-col" htmlFor="address">
-              Select address
-              <select
-                className="mt-5 border border-slate-500"
-                name="address"
-                id="address"
-                onChange={(e) => handleChange(e)}
-                value={postalCode}
-              >
-                {shippingAddress.map((el) => (
-                  <option key={el.postalCode} value={el.postalCode}>
-                    {el.address}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <button
-              disabled={_.isEmpty(addressItem)}
-              className="bg-amber-300 mx-auto block px-5 py-1.5 disabled:text-slate-500 disabled:bg-amber-100 disabled:cursor-not-allowed rounded-full transition-colors hover:bg-slate-400"
-              type="button"
-              onClick={() =>
-                createOrder({
-                  itemsPrice: calculateItemsPrice,
-                  paymentMethod: paymentMethod,
-                  shippingPrice: shippingPrice,
-                  shippingAddress: addressItem,
-                  taxPrice: taxPrice,
-                  totalPrice: calculateTotal,
-                  orderItems: cart,
-                })
-              }
+          {success && (
+            <Alert variant="success" text="Order successfully made" />
+          )}
+          <form
+            className="flex flex-col w-64 mx-auto space-y-5"
+            onSubmit={handleSubmit}
+          >
+            <label
+              htmlFor="paymentMethod"
+              className="form-label inline-block mb-2 text-gray-700"
             >
-              Place order
-            </button>
+              Payment Method
+            </label>
+            <select
+              className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              name="paymentMethod"
+              id="paymentMethod"
+              onChange={(e) => {
+                savePaymentMethod(e.target.value.toLowerCase());
+                setPay(e.target.value);
+              }}
+              value={pay}
+            >
+              {options.map((el) => (
+                <option key={el.provider} value={el.provider}>
+                  {el.provider}
+                </option>
+              ))}
+            </select>
+
+            <label
+              htmlFor="postalCode"
+              className="form-label inline-block mb-2 text-gray-700"
+            >
+              Address
+            </label>
+            <select
+              className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              name="postalCode"
+              id="postalCode"
+              onChange={(e) => handleChange(e)}
+              value={postalCode}
+            >
+              {shippingAddress.map((el) => (
+                <option key={el.postalCode} value={el.postalCode}>
+                  {el.address}
+                </option>
+              ))}
+            </select>
+
+            <Button type="submit" variant="warning" text="Place order" />
           </form>
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

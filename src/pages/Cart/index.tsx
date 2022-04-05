@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartItem, Header } from '../../components';
+import { Button, CartItem, Header } from '../../components';
 import { AuthContext } from '../../context/auth';
 import { CartContext } from '../../context/cart';
 
@@ -11,8 +11,8 @@ const Cart = () => {
   const navigate = useNavigate();
 
   return (
-    <>
-      <Header title="case-3" />
+    <div className="bg-stone-100 pb-2 min-h-screen">
+      <Header />
 
       {!_.isEmpty(cart) ? (
         <main className="flex flex-col">
@@ -46,13 +46,12 @@ const Cart = () => {
               </div>
 
               <div className="pt-2.5">
-                <button
+                <Button
                   type="button"
-                  className="bg-amber-500 mx-auto block px-5 py-1.5 rounded-full transition-colors hover:bg-amber-700"
-                  onClick={() => navigate('/challenge/case-3/shipping')}
-                >
-                  Proceed
-                </button>
+                  variant="warning"
+                  text="Proceed"
+                  onClick={() => navigate('/shipping')}
+                />
               </div>
 
               {_.isEmpty(auth) && (
@@ -77,7 +76,7 @@ const Cart = () => {
           </button>
         </main>
       )}
-    </>
+    </div>
   );
 };
 

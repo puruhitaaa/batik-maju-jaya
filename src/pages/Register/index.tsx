@@ -1,6 +1,6 @@
-import { MouseEvent, useContext, useEffect, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Header } from '../../components';
+import { Button, Header } from '../../components';
 import { AuthContext } from '../../context/auth';
 
 const Register = () => {
@@ -12,14 +12,12 @@ const Register = () => {
 
   const { register, loading, auth, error } = useContext(AuthContext);
 
-  const submitHandler = (e: MouseEvent<HTMLButtonElement>) => {
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     register(name, email, password);
   };
 
-  const redirect = location.search
-    ? location.search.split('=')[1]
-    : '/challenge/case-3';
+  const redirect = location.search ? location.search.split('=')[1] : '/';
 
   useEffect(() => {
     if (!loading && auth) {
@@ -28,48 +26,111 @@ const Register = () => {
   }, [loading, auth, navigate, redirect]);
 
   return (
-    <>
-      <Header title="case-3" />
+    <div className="bg-stone-100 pb-2 min-h-screen">
+      <Header />
 
       <main className="flex flex-col h-[80vh] justify-center items-center space-y-5">
         <h1 className="text-center font-bold text-2xl">Sign Up</h1>
         {error && <h5 className="font-semibold text-red-500">{error}</h5>}
-        <form className="flex flex-col space-y-2.5 text-base">
-          <label htmlFor="name">
-            <input
-              className="border-amber-500 border outline-none px-10 py-2"
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your name"
-              type="text"
-            />
-          </label>
-          <label htmlFor="email">
-            <input
-              className="border-amber-500 border outline-none px-10 py-2"
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              type="email"
-            />
-          </label>
-          <label htmlFor="password">
-            <input
-              className="border-amber-500 border outline-none px-10 py-2"
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              type="password"
-            />
-          </label>
-        </form>
+        <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+          <form onSubmit={submitHandler}>
+            <div className="form-group mb-6">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label inline-block mb-2 text-gray-700"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                className="form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Enter name"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+              />
+            </div>
 
-        <button
-          type="button"
-          onClick={submitHandler}
-          className="bg-slate-300 px-10 py-1.5 rounded-full transition-colors hover:bg-slate-400"
-        >
-          Sign up
-        </button>
+            <div className="form-group mb-6">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label inline-block mb-2 text-gray-700"
+              >
+                Email address
+              </label>
+              <input
+                type="email"
+                className="form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Enter email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+              <small className="block mt-1 text-xs text-gray-600">
+                We'll never share your email with anyone else.
+              </small>
+            </div>
+
+            <div className="form-group mb-6">
+              <label
+                htmlFor="exampleInputPassword1"
+                className="form-label inline-block mb-2 text-gray-700"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                className="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+            </div>
+
+            <Button type="submit" variant="light" text="Register" />
+          </form>
+        </div>
       </main>
-    </>
+    </div>
   );
 };
 
