@@ -23,3 +23,9 @@ https://batik-maju-jaya.vercel.app
 ![App Screenshot](https://i.ibb.co/LpH0SRG/Screenshot-2022-04-04-013717.png)
 ![App Screenshot](https://i.ibb.co/BNPbVvS/Screenshot-2022-04-04-013700.png)
 ![App Screenshot](https://i.ibb.co/F545fWY/Screenshot-2022-04-04-013641.png)
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`API_URI`
