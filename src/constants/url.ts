@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://ecommerce-prv.herokuapp.com';
+export const BASE_URL = process.env.API_URI;
 
 export const USER_LOGIN_PATH = `${BASE_URL}/api/users/login`;
 export const USERS_PATH = `${BASE_URL}/api/users`;
