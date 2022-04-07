@@ -28,4 +28,4 @@ https://batik-maju-jaya.vercel.app
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`API_URI`
+`REACT_APP_API_URI`
